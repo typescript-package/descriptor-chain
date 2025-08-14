@@ -92,6 +92,13 @@ export abstract class DescriptorChainCore<
 
   //#region Method
   /**
+   * @description Activates the descriptor chain.
+   * @public
+   * @returns {this} The instance of the descriptor chain.
+   */
+  abstract activate(): this;
+
+  /**
    * @description Adds a new descriptor to the chain.
    * @abstract
    * @param {Partial<WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>>} descriptor The descriptor to add.
@@ -107,12 +114,33 @@ export abstract class DescriptorChainCore<
   abstract clear(): this;
 
   /**
+   * @description Deactivates the descriptor chain.
+   * @public
+   * @returns {this} The instance of the descriptor chain.
+   */
+  abstract deactivate(): this;
+
+  /**
    * @description Deletes a descriptor from the chain at the specified index.
    * @abstract
    * @param {number} index The index of the descriptor to delete.
-   * @returns {this} 
+   * @returns {this} The instance of the descriptor chain for method chaining.
    */
   abstract delete(index: number): this;
+
+  /**
+   * @description Disables the chain.
+   * @abstract
+   * @returns {this} The instance of the descriptor chain for method chaining.
+   */
+  abstract disable(): this;
+
+  /**
+   * @description Enables the chain.
+   * @abstract
+   * @returns {this} The instance of the descriptor chain for method chaining.
+   */
+  abstract enable(): this;
 
   /**
    * @description Returns an iterable iterator of the entries in the descriptor chain.
