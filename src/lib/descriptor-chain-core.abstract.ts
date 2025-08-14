@@ -1,5 +1,5 @@
 // Type.
-import { PropertyDescriptorChain, ThisAccessorPropertyDescriptor, WrappedPropertyDescriptor } from "@typedly/descriptor"
+import { PropertyDescriptorChain, WrappedPropertyDescriptor } from "@typedly/descriptor"
 /**
  * @description The core abstract class for descriptor chains to store related property descriptors.
  * @export
@@ -10,9 +10,9 @@ import { PropertyDescriptorChain, ThisAccessorPropertyDescriptor, WrappedPropert
  * @template {K extends keyof O ? O[K] : any} [V=K extends keyof O ? O[K] : any] The value type of the property in the object.
  * @template {boolean} [A=boolean] The type of the active state of the descriptor.
  * @template {boolean} [N=boolean] The enabled state of the descriptor.
- * @template {boolean} [C=boolean] The configurable state of the descriptor.
+ * @template {boolean} [C=boolean] The configurable state of the descriptor.  
  * @template {boolean} [E=boolean] The enumerable state of the descriptor.
- * @template {ThisAccessorPropertyDescriptor<V, O, C, E>} [D=ThisAccessorPropertyDescriptor<V, O, C, E>] The strict property descriptor type.
+ * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] The wrapped property descriptor type.
  * @implements {PropertyDescriptorChain<O, K, V, A, N, C, E, D>}
  */
 export abstract class DescriptorChainCore<
@@ -65,7 +65,12 @@ export abstract class DescriptorChainCore<
    */
   abstract get enabled(): N;
 
-
+  /**
+   * @description The key of the descriptor chain.
+   * @abstract
+   * @readonly
+   * @type {K}
+   */
   abstract get key(): K;
 
   /**
@@ -89,7 +94,7 @@ export abstract class DescriptorChainCore<
   /**
    * @description Adds a new descriptor to the chain.
    * @abstract
-   * @param {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} descriptor The descriptor to add.
+   * @param {Partial<WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>>} descriptor The descriptor to add.
    * @returns {this} The instance of the descriptor chain for method chaining.
    */
   abstract add(descriptor: Partial<WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>>): this;
