@@ -3,7 +3,7 @@ import { DescriptorChainCore } from './descriptor-chain-core.abstract';
 // Class.
 import { Descriptor } from '@typescript-package/descriptor';
 // Type.
-import { StrictPropertyDescriptor, ThisAccessorPropertyDescriptor, WrappedPropertyDescriptor } from '@typedly/descriptor';
+import { WrappedPropertyDescriptor } from '@typedly/descriptor';
 /**
  * @description The class representing a chain of property descriptors.
  * @export
@@ -15,7 +15,7 @@ import { StrictPropertyDescriptor, ThisAccessorPropertyDescriptor, WrappedProper
  * @template {boolean} [N=boolean] The type of enabled property.
  * @template {boolean} [C=boolean] The type of configurable property.
  * @template {boolean} [E=boolean] The type of enumerable property.
- * @template {ThisAccessorPropertyDescriptor<V, O, C, E>} [D=ThisAccessorPropertyDescriptor<V, O, C, E>] The type of strict property descriptor.
+ * @template {WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>} [D=WrappedPropertyDescriptor<O, K, V, A, N, C, E, any>] The type of wrapped property descriptor.
  * @implements {DescriptorChainCore<O, K, V, A, N, C, E, D>}
  */
 export class DescriptorChain<
