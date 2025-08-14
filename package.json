@@ -18,18 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/typescript-package/descriptor.git"
+    "url": "git+https://github.com/typescript-package/descriptor-chain.git"
   },
   "bugs": {
-    "url": "https://github.com/typescript-package/descriptor/issues"
+    "url": "https://github.com/typescript-package/descriptor-chain/issues"
   },
   "keywords": [
     "@typescript-package",
-    "@typescript-package/descriptor",
+    "@typescript-package/descriptor-chain",
     "AccessorDescriptor",
     "CommonDescriptor",
     "DataDescriptor",
-    "Descriptor"
+    "Descriptor",
+    "DescriptorChain"
   ],
   "funding": [
     {
