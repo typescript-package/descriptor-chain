@@ -3,7 +3,7 @@ import { DescriptorChainBase } from './descriptor-chain-base.abstract';
 // Interface.
 import { WrappedPropertyDescriptor } from '@typedly/descriptor';
 /**
- * @description The class representing a chain of property descriptors.
+ * @description The concrete class representing a chain of property descriptors.
  * @export
  * @abstract
  * @class DescriptorChain
@@ -38,8 +38,12 @@ export class DescriptorChain<
   /**
    * @inheritdoc
    */
-  public add(descriptor: D): this {
-    super.data.push(descriptor);
+  public add(descriptor: D, current: boolean = true): this {
+    // Adds the new descriptor to the chain.
+    super.data.push(new super.descriptor(super.object, super.key, descriptor));
+    // Sets the current index.
+    current && super.setCurrentIndex(super.lastIndex);
+    // Returns the instance.
     return this;
   }
 }
