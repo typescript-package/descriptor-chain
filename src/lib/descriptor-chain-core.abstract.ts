@@ -51,11 +51,30 @@ export abstract class DescriptorChainCore<
   abstract get current(): D;
 
   /**
+   * @description
+   * @protected
+   * @abstract
+   * @readonly
+   * @type {new (object: O, key: K, attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>) => D}
+   */
+  protected abstract get descriptor(): new (object: O, key: K, attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>) => D;
+
+  /**
    * @description The current index of the descriptor chain to use by the property.
    * @readonly
    * @type {number}
    */
   abstract get currentIndex(): number;
+
+  /**
+   * @description
+   * @protected
+   * @abstract
+
+   * @readonly
+   * @type {D[]}
+   */
+  protected abstract get data(): D[];
 
   /**
    * @description The enabled state of the descriptor chain.
@@ -80,6 +99,30 @@ export abstract class DescriptorChainCore<
    * @type {number}
    */
   abstract get lastIndex(): number;
+
+  /**
+   * @description The next descriptor in the chain.
+   * @abstract
+   * @readonly
+   * @type {(D | undefined)}
+   */
+  abstract get next(): D | undefined;
+
+  /**
+   * @description The object of the descriptor chain.
+   * @abstract
+   * @readonly
+   * @type {O}
+   */
+  abstract get object(): O;
+
+  /**
+   * @description The previous descriptor in the chain.
+   * @abstract
+   * @readonly
+   * @type {(D | undefined)}
+   */
+  abstract get previous(): D | undefined;
 
   /**
    * @description The size of the descriptor chain.
