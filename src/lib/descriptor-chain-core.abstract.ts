@@ -1,5 +1,5 @@
 // Type.
-import { PropertyDescriptorChain, WrappedPropertyDescriptor } from "@typedly/descriptor"
+import { PropertyDescriptorChain, WrappedPropertyDescriptor } from "@typedly/descriptor";
 /**
  * @description The core abstract class for descriptor chains to store related property descriptors.
  * @export
@@ -239,7 +239,7 @@ export abstract class DescriptorChainCore<
   abstract last(): D;
 
   /**
-   * @description Loads the  the descriptor chain.
+   * @description Loads the descriptor chain.
    * @abstract
    * @returns {this} The instance of the descriptor chain for method chaining.
    */

@@ -132,11 +132,11 @@ export abstract class DescriptorChainBase<
    * @inheritdoc
    */
   get size(): number {
-    return this.#data.length
+    return this.#data.length;
   }
 
   /**
-   * @description
+   * @description Privately stored active state.
    * @type {A}
    */
   #active: A = true as A;
@@ -162,25 +162,25 @@ export abstract class DescriptorChainBase<
   #enabled: N = true as N;
 
   /**
-   * @description
+   * @description Privately stored current index.
    * @type {number}
    */
   #currentIndex: number = 0;
 
   /**
-   * @description
+   * @description Privately stored data array.
    * @type {D[]}
    */
   #data: D[] = new Array<D>();
 
   /**
-   * @description
+   * @description Privately stored key.
    * @type {K}
    */
   #key: K;
 
   /**
-   * @description
+   * @description Privately stored object.
    * @type {O}
    */
   #object: O;
