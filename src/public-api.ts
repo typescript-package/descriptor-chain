@@ -5,6 +5,7 @@
 export {
   // Abstract.
   DescriptorChainCore,
+  DescriptorChainBase,
   // Class.
   DescriptorChain
 } from './lib';
