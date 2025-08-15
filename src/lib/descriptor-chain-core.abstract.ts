@@ -109,6 +109,14 @@ export abstract class DescriptorChainCore<
   abstract get next(): D | undefined;
 
   /**
+   * @description The index of the next descriptor.
+   * @abstract
+   * @readonly
+   * @type {(number | undefined)}
+   */
+  abstract get nextIndex(): number | undefined; 
+
+  /**
    * @description The object of the descriptor chain.
    * @abstract
    * @readonly
@@ -123,6 +131,14 @@ export abstract class DescriptorChainCore<
    * @type {(D | undefined)}
    */
   abstract get previous(): D | undefined;
+
+  /**
+   * @description The index of the previous descriptor.
+   * @abstract
+   * @readonly
+   * @type {(number | undefined)}
+   */
+  abstract get previousIndex(): number | undefined;
 
   /**
    * @description The size of the descriptor chain.
