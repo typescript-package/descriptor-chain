@@ -5,7 +5,7 @@ import { Descriptor } from '@typescript-package/descriptor';
 // Type.
 import { WrappedPropertyDescriptor } from '@typedly/descriptor';
 /**
- * @description The class representing a chain of property descriptors.
+ * @description The base abstraction class representing a chain of property descriptors.
  * @export
  * @abstract
  * @class DescriptorChainBase
@@ -59,13 +59,17 @@ export abstract class DescriptorChainBase<
   }
 
   /**
-   * @description
-   * @protected
-   * @readonly
-   * @type {D[]}
+   * @inheritdoc
    */
   protected get data(): D[] {
     return this.#data;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  protected get descriptor() {
+    return this.#descriptor;
   }
 
   /**
@@ -92,6 +96,41 @@ export abstract class DescriptorChainBase<
   /**
    * @inheritdoc
    */
+  get nextIndex(): number | undefined {
+    return typeof this.currentIndex === 'number' ? this.currentIndex + 1 : undefined;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  get object(): O {
+    return this.#object;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  get next(): D | undefined {
+    return typeof this.nextIndex === 'number' ? this.#data[this.nextIndex] : undefined;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  get previous(): D | undefined {
+    return typeof this.previousIndex === 'number' ? this.#data[this.previousIndex] : undefined;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  get previousIndex(): number | undefined {
+    return typeof this.currentIndex === 'number' ? this.currentIndex - 1 : undefined;
+  }
+
+  /**
+   * @inheritdoc
+   */
   get size(): number {
     return this.#data.length
   }
@@ -101,6 +140,20 @@ export abstract class DescriptorChainBase<
    * @type {A}
    */
   #active: A = true as A;
+
+  /**
+   * @description 
+   * @type {new (
+   *     object: O,
+   *     key: K,
+   *     attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>,
+   *   ) => D}
+   */
+  #descriptor: new (
+    object: O,
+    key: K,
+    attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>,
+  ) => D;
 
   /**
    * @description Privately stored enabled state.
@@ -131,14 +184,29 @@ export abstract class DescriptorChainBase<
    * @type {O}
    */
   #object: O;
-
+  
   /**
-   * Creates an instance of `DescriptorChain`.
-   * @param object The object containing the property.
-   * @param key The key of the property.
+   * Creates an instance of `DescriptorChainBase` child class.
+   * @constructor
+   * @param {O} object The object containing the property.
+   * @param {K} key The key of the property.
+   * @param {new (
+   *       object: O,
+   *       key: K,
+   *       attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>,
+   *     ) => D} descriptor 
    */
-  constructor(object: O, key: K) { 
+  constructor(
+    object: O,
+    key: K,
+    descriptor: new (
+      object: O,
+      key: K,
+      attributes: WrappedPropertyDescriptor<O, K, V, A, N, C, E, D>,
+    ) => D
+  ) {
     super();
+    this.#descriptor = descriptor;
     this.#key = key;
     this.#object = object;
   }
